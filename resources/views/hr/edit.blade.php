@@ -13,8 +13,18 @@
                             <div class="col-sm-5">
                                 <input type="text" class="form-control" id="name" name="name" value="{{$user->name}}">
                             </div>
-                        </div>
-
+                            </div>
+                            <div class="form-group">
+                                <label for="select" class="col-sm-2 control-label">Job position</label>
+                                <div class="col-sm-5">
+                                    <select class="form-control" name="job_position_id">
+                                        <option></option>
+                                        @foreach($positions as $position)
+                                            <option value="{{$position->id}}" {{ $position->id == $user->job_position_id ? "selected" : "" }} >{{$position->title}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-5">
                                 <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">

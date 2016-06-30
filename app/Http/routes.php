@@ -22,3 +22,7 @@ Route::get('/home', 'HomeController@index');
 Route::get('/hr', 'HRDepartmentController@index');
 
 Route::any('/hr/edit/{id}', 'HRDepartmentController@edit');
+
+Route::any('/hr/job-positions', 'HRDepartmentController@displayJobPositions');
+
+Route::any('/hr/add-job-positions', 'HRDepartmentController@addJobPositions');

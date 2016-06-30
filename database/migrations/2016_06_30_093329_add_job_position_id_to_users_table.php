@@ -13,7 +13,8 @@ class AddJobPositionIdToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('job_position_id')->nullable();
+            $table->unsignedInteger('job_position_id')->nullable();
+            $table->foreign('job_position_id')->references('id')->on('job_positions')->onDelete('set null')->onUpdate('cascade');
         });
     }
 

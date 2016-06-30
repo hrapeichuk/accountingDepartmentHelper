@@ -3,7 +3,10 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-2">
+                <a class="btn btn-default" href="{{ url('/hr/job-positions') }}">Job positions</a>
+            </div>
+            <div class="col-md-10">
                 <div class="panel panel-default">
                     <div class="panel-heading">Workers</div>
 
@@ -13,6 +16,7 @@
                                 <th>Number</th>
                                 <th>Name</th>
                                 <th>Email</th>
+                                <th>Job position</th>
                                 <th></th>
                             </tr>
                             @foreach($users as $key=>$user)
@@ -20,6 +24,7 @@
                                     <td>{{++$key}}</td>
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->email}}</td>
+                                    <td>{{$user->jobPosition ? $user->jobPosition->title : ''}}</td>
                                     <td><a class="btn btn-default" href="{{ url('/hr/edit', ['id' => $user->id]) }}">Edit</a></td>
                                 </tr>
                             @endforeach

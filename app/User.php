@@ -23,4 +23,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function jobPosition()
+    {
+        return $this->hasOne('App\JobPosition', 'id', 'job_position_id');
+    }
+
+    
 }
