@@ -13,12 +13,14 @@
                                 <th>Number</th>
                                 <th>Name</th>
                                 <th>Email</th>
+                                <th></th>
                             </tr>
                             @foreach($users as $key=>$user)
                                 <tr>
                                     <td>{{++$key}}</td>
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->email}}</td>
+                                    <td><a class="btn btn-default" href="{{ url('/hr/edit', ['id' => $user->id]) }}">Edit</a></td>
                                 </tr>
                             @endforeach
                         </table>

@@ -20,3 +20,5 @@ Route::auth();
 Route::get('/home', 'HomeController@index');
 
 Route::get('/hr', 'HRDepartmentController@index');
+
+Route::any('/hr/edit/{id}', 'HRDepartmentController@edit');
