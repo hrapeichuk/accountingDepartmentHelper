@@ -23,6 +23,14 @@ Route::get('/hr', 'HRDepartmentController@index');
 
 Route::any('/hr/edit/{id}', 'HRDepartmentController@edit');
 
+Route::get('/hr/delete-user/{id}', 'HRDepartmentController@deleteUser');
+
 Route::any('/hr/job-positions', 'HRDepartmentController@displayJobPositions');
 
-Route::any('/hr/add-job-positions', 'HRDepartmentController@addJobPositions');
+Route::any('/hr/add-job-positions', 'HRDepartmentController@addJobPosition');
+
+Route::get('/hr/delete-job-position/{id}', 'HRDepartmentController@deleteJobPosition');
+
+Route::get('/financial-resources', 'FinancialResourcesDepartmentController@index');
+
+Route::any('/financial-resources/add-financial-resource', 'FinancialResourcesDepartmentController@addFinancialResource');

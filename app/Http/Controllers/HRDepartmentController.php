@@ -33,10 +33,16 @@ class HRDepartmentController extends Controller
             $user->job_position_id = $request->input('job_position_id') ? $request->input('job_position_id') : NULL;
             $user->save();
 
-            return view('hr.index', ['users' => User::all()]);
+            return redirect('hr');
         }
 
         return view('hr.edit', ['user' => $user, 'positions' => JobPosition::all()]);
+    }
+
+    public function deleteUser($id)
+    {
+        User::destroy($id);
+        return redirect('hr');
     }
 
     public function displayJobPositions()
@@ -44,16 +50,22 @@ class HRDepartmentController extends Controller
         return view('hr.jobPositions', ['jobPositions' => JobPosition::all()]);
     }
 
-    public function addJobPositions(Request $request)
+    public function addJobPosition(Request $request)
     {
         if ($request->isMethod(Request::METHOD_POST)) {
             $jobPosition = new JobPosition();
             $jobPosition->title = $request->input('title');
             $jobPosition->save();
 
-            return view('hr.jobPositions', ['jobPositions' => JobPosition::all()]);
+            return redirect('hr/job-positions');
         }
         
         return view('hr.addJobPosition', ['jobPositions' => JobPosition::all()]);
+    }
+
+    public function deleteJobPosition($id)
+    {
+        JobPosition::destroy($id);
+        return redirect('hr/job-positions');
     }
 }

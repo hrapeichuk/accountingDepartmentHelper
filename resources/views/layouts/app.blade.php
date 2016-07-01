@@ -49,6 +49,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/home') }}">Home</a></li>
                     <li><a href="{{ url('/hr') }}">HR Department</a></li>
+                    <li><a href="{{ url('/financial-resources') }}">Financial Resources Department</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
