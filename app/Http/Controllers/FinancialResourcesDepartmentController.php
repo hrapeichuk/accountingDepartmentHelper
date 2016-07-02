@@ -8,7 +8,7 @@
 
 namespace App\Http\Controllers;
 
-
+use DB;
 use App\FinancialResource;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
@@ -24,7 +24,9 @@ class FinancialResourcesDepartmentController extends Controller
     
     public function index()
     {
-        return view('financial_resources.index', ['financialResources' => FinancialResource::all()]);
+        $total = (double)DB::table('financial_resources')->sum('amount');
+        //dd($total);
+        return view('financial_resources.index', ['financialResources' => FinancialResource::all()], $total);
     }
 
     public function addFinancialResource(Request $request)

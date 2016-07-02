@@ -27,6 +27,8 @@
                             @endforeach
                         </table>
                     </div>
+                    <div class="panel-footer">{{$total}}
+                    </div>
                 </div>
             </div>
         </div>
