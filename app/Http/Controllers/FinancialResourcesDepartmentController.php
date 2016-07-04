@@ -27,7 +27,7 @@ class FinancialResourcesDepartmentController extends Controller
     public function index()
     {
         $total = (double)DB::table('accounts')->sum('amount');
-        return view('financial_resources.index', ['accounts' => Account::all(), 'total' => $total]);
+        return view('financial_resources.index', ['accounts' => Account::all(), 'transactions' => Transaction::all(), 'total' => $total]);
     }
 
     public function addAccount(Request $request)
@@ -54,7 +54,7 @@ class FinancialResourcesDepartmentController extends Controller
             $transaction->save();
 
             $account = Account::findOrFail($transaction->account_id);
-            if ($transaction->type == "+") {
+            if ($transaction->type == "plus") {
                 $account->amount += $transaction->amount;
             } else {
                 $account->amount -= $transaction->amount;

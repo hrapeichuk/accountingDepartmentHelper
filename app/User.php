@@ -28,6 +28,4 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\JobPosition', 'id', 'job_position_id');
     }
-
-    
 }

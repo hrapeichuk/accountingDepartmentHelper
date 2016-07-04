@@ -40,4 +40,34 @@
             </div>
         </div>
     </div>
+
+
+
+    <div class="container" style="margin-top: 40px;">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Transactions</div>
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <tr>
+                                <th>Number</th>
+                                <th>Account</th>
+                                <th>Type</th>
+                                <th>Amount</th>
+                            </tr>
+                            @foreach($transactions as $key=>$transaction)
+                                <tr>
+                                    <td>{{++$key}}</td>
+                                    <td>{{$transaction->accountName->name." (".$transaction->accountName->type.")"}}</td>
+                                    <td>{{$transaction->type}}</td>
+                                    <td>{{number_format ($transaction->amount, 2, '.', ' ')}}</td>
+                                </tr>
+                            @endforeach
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
