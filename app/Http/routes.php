@@ -33,4 +33,6 @@ Route::get('/hr/delete-job-position/{id}', 'HRDepartmentController@deleteJobPosi
 
 Route::get('/financial-resources', 'FinancialResourcesDepartmentController@index');
 
-Route::any('/financial-resources/add-financial-resource', 'FinancialResourcesDepartmentController@addFinancialResource');
+Route::any('/financial-resources/add-account', 'FinancialResourcesDepartmentController@addAccount');
+
+Route::any('/financial-resources/add-transaction', 'FinancialResourcesDepartmentController@addTransaction');

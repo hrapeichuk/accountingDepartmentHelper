@@ -8,6 +8,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Account;
+use App\Transaction;
 use DB;
 use App\FinancialResource;
 use Illuminate\Routing\Controller;
@@ -24,24 +26,45 @@ class FinancialResourcesDepartmentController extends Controller
     
     public function index()
     {
-        $total = (double)DB::table('financial_resources')->sum('amount');
-        //dd($total);
-        return view('financial_resources.index', ['financialResources' => FinancialResource::all()], $total);
+        $total = (double)DB::table('accounts')->sum('amount');
+        return view('financial_resources.index', ['accounts' => Account::all(), 'total' => $total]);
     }
 
-    public function addFinancialResource(Request $request)
+    public function addAccount(Request $request)
     {
         if ($request->isMethod(Request::METHOD_POST)) {
-            $financialResource = new FinancialResource();
-            $financialResource->name = $request->input('name');
-            $financialResource->type = $request->input('type') ? $request->input('type') : NULL;
-            $financialResource->amount = $request->input('number');
-            $financialResource->save();
+            $account = new Account();
+            $account->name = $request->input('name');
+            $account->type = $request->input('type') ? $request->input('type') : NULL;
+            $account->save();
 
             return redirect('/financial-resources');
         }
 
-        return view('financial_resources.addFinancialResource', ['financialResources' => FinancialResource::all()]);
+        return view('financial_resources.addAccount', ['accounts' => Account::all()]);
+    }
+
+    public function addTransaction(Request $request)
+    {
+        if ($request->isMethod(Request::METHOD_POST)) {
+            $transaction = new Transaction();
+            $transaction->account_id = $request->input('account') ? $request->input('account') : NULL;
+            $transaction->type = $request->input('type') ? $request->input('type') : NULL;
+            $transaction->amount = $request->input('amount');
+            $transaction->save();
+
+            $account = Account::findOrFail($transaction->account_id);
+            if ($transaction->type == "+") {
+                $account->amount += $transaction->amount;
+            } else {
+                $account->amount -= $transaction->amount;
+            }
+            $account->save();
+
+            return redirect('/financial-resources');
+        }
+
+        return view('financial_resources.addTransaction', ['transactions' => Transaction::all(), 'accounts' => Account::all()]);
     }
 
 }

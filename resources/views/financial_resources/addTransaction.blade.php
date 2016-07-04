@@ -5,28 +5,32 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Add financial resource</div>
+                    <div class="panel-heading">Add transaction</div>
 
                     <form class="form-horizontal" method="post" style="margin-top: 30px;">
                         <div class="form-group">
-                            <label for="name" class="col-sm-2 control-label">Name</label>
+                            <label for="name" class="col-sm-2 control-label">Account's name</label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" id="name" name="name">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="select" class="col-sm-2 control-label">Type</label>
-                            <div class="col-sm-5">
-                                <select class="form-control" name="type">
-                                    <option value="bank account">bank account</option>
-                                    <option value="cash">cash</option>
+                                <select class="form-control" name="account">
+                                    @foreach($accounts as $key=>$account)
+                                        <option value="{{$account->id}}">{{$account->name." (".$account-> type.")"}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="name" class="col-sm-2 control-label">Amount</label>
+                            <label for="type" class="col-sm-2 control-label">Type</label>
                             <div class="col-sm-5">
-                                <input type="number" step="0.01" class="form-control" id="number" name="number">
+                                <select class="form-control" name="type">
+                                    <option value="plus">+</option>
+                                    <option value="minus">-</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="amount" class="col-sm-2 control-label">Amount</label>
+                            <div class="col-sm-5">
+                                <input type="number" class="form-control" id="amount" name="amount">
                             </div>
                         </div>
                         <div class="form-group">

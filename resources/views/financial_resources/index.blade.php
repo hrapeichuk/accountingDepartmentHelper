@@ -5,8 +5,9 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Financial Resources
-                        <a class="btn btn-default" style="margin-left: 600px;" href="{{ url('/financial-resources/add-financial-resource') }}">Add financial resource</a>
+                    <div class="panel-heading">Accounts
+                        <a class="btn btn-default" style="margin-left: 550px;" href="{{ url('/financial-resources/add-account') }}">Add account</a>
+                        <a class="btn btn-default" style="margin-left: 50px;" href="{{ url('/financial-resources/add-transaction') }}">Add transaction</a>
                     </div>
 
                     <div class="panel-body">
@@ -17,17 +18,23 @@
                                 <th>Type</th>
                                 <th>Amount</th>
                             </tr>
-                            @foreach($financialResources as $key=>$financialResource)
+                            @foreach($accounts as $key=>$account)
                                 <tr>
                                     <td>{{++$key}}</td>
-                                    <td>{{$financialResource->name}}</td>
-                                    <td>{{$financialResource->type}}</td>
-                                    <td>{{$financialResource->amount}}</td>
+                                    <td>{{$account->name}}</td>
+                                    <td>{{$account->type}}</td>
+                                    <td>{{number_format ($account->amount, 2, '.', ' ')}}</td>
                                 </tr>
                             @endforeach
+                            <tfoot>
+                                <tr class="active">
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th>{{number_format ($total, 2, '.', ' ')}}</th>
+                                </tr>
+                            </tfoot>
                         </table>
-                    </div>
-                    <div class="panel-footer">{{$total}}
                     </div>
                 </div>
             </div>
