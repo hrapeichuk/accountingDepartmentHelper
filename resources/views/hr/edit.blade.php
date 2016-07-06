@@ -26,9 +26,9 @@
                                 </div>
                         </div>
                         <div class="form-group">
-                            <label for="name" class="col-sm-2 control-label">Salary</label>
+                            <label for="salary" class="col-sm-2 control-label">Salary</label>
                             <div class="col-sm-5">
-                                <input type="number" class="form-control" id="name" name="name" step="0.01" value="{{$user->salary}}">
+                                <input type="number" class="form-control" id="salary" name="salary" step="0.01" min="0.00" value="{{$user->salary}}">
                             </div>
                         </div>
                         <div class="form-group">

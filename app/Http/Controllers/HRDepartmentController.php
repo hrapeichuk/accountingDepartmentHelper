@@ -31,6 +31,7 @@ class HRDepartmentController extends Controller
         if ($request->isMethod(Request::METHOD_POST)) {
             $user->name = $request->input('name');
             $user->job_position_id = $request->input('job_position_id') ? $request->input('job_position_id') : NULL;
+            $user->salary = $request->input('salary');
             $user->save();
 
             return redirect('hr');

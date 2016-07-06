@@ -26,7 +26,7 @@
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->jobPosition ? $user->jobPosition->title : ''}}</td>
-                                    <td>{{number_format ($user->salary, 2, '.', ' ')}}</td>
+                                    <td>{{number_format ($user->getSalary(), 2, '.', ' ')}}</td>
                                     <td align="right"><a class="btn btn-default" href="{{ url('/hr/edit', ['id' => $user->id]) }}">Edit</a>
                                         <a class="btn btn-default" href="{{ url('/hr/delete-user', ['id' => $user->id]) }}">Delete</a></td>
                                 </tr>

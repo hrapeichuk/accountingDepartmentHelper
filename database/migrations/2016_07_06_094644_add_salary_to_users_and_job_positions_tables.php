@@ -13,11 +13,11 @@ class AddSalaryToUsersAndJobPositionsTables extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->double('salary', 10, 2);
+            $table->double('salary', 10, 2)->unsigned();
         });
 
         Schema::table('job_positions', function (Blueprint $table) {
-            $table->double('salary', 10, 2);
+            $table->double('salary', 10, 2)->unsigned();
         });
     }
 

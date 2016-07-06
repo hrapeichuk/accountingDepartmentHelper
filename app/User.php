@@ -28,4 +28,15 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\JobPosition', 'id', 'job_position_id');
     }
+    
+    public function getSalary()
+    {
+        if ($this->salary) {
+            return $this->salary;
+        } elseif ($this->jobPosition) {
+            return $this->jobPosition->salary;
+        }
+        
+        return 0;
+    }
 }
