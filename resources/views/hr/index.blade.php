@@ -17,6 +17,7 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Job position</th>
+                                <th>Salary</th>
                                 <th></th>
                             </tr>
                             @foreach($users as $key=>$user)
@@ -25,7 +26,8 @@
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->jobPosition ? $user->jobPosition->title : ''}}</td>
-                                    <td><a class="btn btn-default" href="{{ url('/hr/edit', ['id' => $user->id]) }}">Edit</a>
+                                    <td>{{number_format ($user->salary, 2, '.', ' ')}}</td>
+                                    <td align="right"><a class="btn btn-default" href="{{ url('/hr/edit', ['id' => $user->id]) }}">Edit</a>
                                         <a class="btn btn-default" href="{{ url('/hr/delete-user', ['id' => $user->id]) }}">Delete</a></td>
                                 </tr>
                             @endforeach

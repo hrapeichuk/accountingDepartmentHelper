@@ -29,10 +29,14 @@ Route::any('/hr/job-positions', 'HRDepartmentController@displayJobPositions');
 
 Route::any('/hr/add-job-positions', 'HRDepartmentController@addJobPosition');
 
+Route::any('/hr/edit-job-position/{id}', 'HRDepartmentController@editJobPosition');
+
 Route::get('/hr/delete-job-position/{id}', 'HRDepartmentController@deleteJobPosition');
 
 Route::get('/financial-resources', 'FinancialResourcesDepartmentController@index');
 
 Route::any('/financial-resources/add-account', 'FinancialResourcesDepartmentController@addAccount');
+
+Route::get('/financial-resources/delete-account/{id}', 'FinancialResourcesDepartmentController@deleteAccount');
 
 Route::any('/financial-resources/add-transaction', 'FinancialResourcesDepartmentController@addTransaction');

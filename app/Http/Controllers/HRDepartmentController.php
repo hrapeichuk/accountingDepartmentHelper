@@ -55,12 +55,26 @@ class HRDepartmentController extends Controller
         if ($request->isMethod(Request::METHOD_POST)) {
             $jobPosition = new JobPosition();
             $jobPosition->title = $request->input('title');
+            $jobPosition->salary = $request->input('salary');
             $jobPosition->save();
 
             return redirect('hr/job-positions');
         }
-        
         return view('hr.addJobPosition', ['jobPositions' => JobPosition::all()]);
+    }
+
+    public function editJobPosition(Request $request, $id)
+    {
+        $jobPosition = JobPosition::findOrFail($id);
+
+        if ($request->isMethod(Request::METHOD_POST)) {
+            $jobPosition->title = $request->input('title');
+            $jobPosition->salary = $request->input('salary');
+            $jobPosition->save();
+
+            return redirect('hr/job-positions');
+        }
+        return view('hr.editJobPosition', ['jobPosition' => $jobPosition, 'jobPositions' => JobPosition::all()]);
     }
 
     public function deleteJobPosition($id)

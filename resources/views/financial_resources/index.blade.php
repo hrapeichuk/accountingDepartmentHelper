@@ -17,6 +17,7 @@
                                 <th>Name</th>
                                 <th>Type</th>
                                 <th>Amount</th>
+                                <th></th>
                             </tr>
                             @foreach($accounts as $key=>$account)
                                 <tr>
@@ -24,6 +25,7 @@
                                     <td>{{$account->name}}</td>
                                     <td>{{$account->type}}</td>
                                     <td>{{number_format ($account->amount, 2, '.', ' ')}}</td>
+                                    <td align="right"><a class="btn btn-default {{$account->amount == 0 ? "" : "disabled"}}" href="{{ url('/financial-resources/delete-account', ['id' => $account->id]) }}">Delete</a></td>
                                 </tr>
                             @endforeach
                             <tfoot>
@@ -32,6 +34,7 @@
                                     <th></th>
                                     <th></th>
                                     <th>{{number_format ($total, 2, '.', ' ')}}</th>
+                                    <th></th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -40,7 +43,6 @@
             </div>
         </div>
     </div>
-
 
 
     <div class="container" style="margin-top: 40px;">
@@ -59,7 +61,7 @@
                             @foreach($transactions as $key=>$transaction)
                                 <tr>
                                     <td>{{++$key}}</td>
-                                    <td>{{$transaction->accountName->name." (".$transaction->accountName->type.")"}}</td>
+                                    <td>{!! $transaction->account_id == null ? "<i>deleted</i>" : htmlentities($transaction->accountName->name." (".$transaction->accountName->type.")") !!}</td>
                                     <td>{{$transaction->type}}</td>
                                     <td>{{number_format ($transaction->amount, 2, '.', ' ')}}</td>
                                 </tr>

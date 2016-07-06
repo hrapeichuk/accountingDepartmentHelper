@@ -11,8 +11,6 @@ namespace App\Http\Controllers;
 use App\Account;
 use App\Transaction;
 use DB;
-use App\FinancialResource;
-use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 
 
@@ -23,7 +21,6 @@ class FinancialResourcesDepartmentController extends Controller
         $this->middleware('auth');
     }
 
-    
     public function index()
     {
         $total = (double)DB::table('accounts')->sum('amount');
@@ -33,6 +30,10 @@ class FinancialResourcesDepartmentController extends Controller
     public function addAccount(Request $request)
     {
         if ($request->isMethod(Request::METHOD_POST)) {
+            $this->validate($request, [
+                'name' => 'required|unique:accounts|max:255',
+            ]);
+
             $account = new Account();
             $account->name = $request->input('name');
             $account->type = $request->input('type') ? $request->input('type') : NULL;
@@ -40,8 +41,16 @@ class FinancialResourcesDepartmentController extends Controller
 
             return redirect('/financial-resources');
         }
-
         return view('financial_resources.addAccount', ['accounts' => Account::all()]);
+    }
+
+    public function deleteAccount($id)
+    {
+        $account = Account::findOrFail($id);
+        if($account->amount == 0){
+            Account::destroy($id);
+            return redirect('/financial-resources');
+        }
     }
 
     public function addTransaction(Request $request)
@@ -63,8 +72,6 @@ class FinancialResourcesDepartmentController extends Controller
 
             return redirect('/financial-resources');
         }
-
         return view('financial_resources.addTransaction', ['transactions' => Transaction::all(), 'accounts' => Account::all()]);
     }
-
 }

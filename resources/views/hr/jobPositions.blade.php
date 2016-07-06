@@ -13,13 +13,17 @@
                             <tr>
                                 <th>№</th>
                                 <th>Title</th>
+                                <th>Salary</th>
                                 <th></th>
                             </tr>
                             @foreach($jobPositions as $key=>$jobPosition)
                                 <tr>
                                     <td>{{++$key}}</td>
                                     <td>{{$jobPosition->title}}</td>
-                                    <td><a class="btn btn-default" href="{{ url('/hr/delete-job-position', ['id' => $jobPosition->id]) }}">Delete</a></td>
+                                    <td>{{number_format ($jobPosition->salary, 2, '.', ' ')}}</td>
+                                    <td align="right"><a class="btn btn-default" href="{{ url('/hr/edit-job-position', ['id' => $jobPosition->id]) }}">Edit</a>
+                                        <a class="btn btn-default" href="{{ url('/hr/delete-job-position', ['id' => $jobPosition->id]) }}">Delete</a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </table>
