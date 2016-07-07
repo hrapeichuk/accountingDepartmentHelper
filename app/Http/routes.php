@@ -40,3 +40,5 @@ Route::any('/financial-resources/add-account', 'FinancialResourcesDepartmentCont
 Route::get('/financial-resources/delete-account/{id}', 'FinancialResourcesDepartmentController@deleteAccount');
 
 Route::any('/financial-resources/add-transaction', 'FinancialResourcesDepartmentController@addTransaction');
+
+Route::get('/api/get-exchange-rate', 'APIController@getExchangeRate');
