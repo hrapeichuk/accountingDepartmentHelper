@@ -5,9 +5,16 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Accounts
-                        <a class="btn btn-default" style="margin-left: 550px;" href="{{ url('/financial-resources/add-account') }}">Add account</a>
-                        <a class="btn btn-default" style="margin-left: 50px;" href="{{ url('/financial-resources/add-transaction') }}">Add transaction</a>
+                    <div class="panel-heading" style="min-height: 54px;">
+                        Accounts
+                        <div class="pull-right">
+                            <a class="btn btn-default" href="{{ url('/financial-resources/add-account') }}">
+                                <i class="fa fa-plus" aria-hidden="true"></i> Add account
+                            </a>
+                            <a class="btn btn-default" href="{{ url('/financial-resources/add-transaction') }}">
+                                <i class="fa fa-plus" aria-hidden="true"></i> Add transaction
+                            </a>
+                        </div>
                     </div>
 
                     <div class="panel-body">
@@ -28,8 +35,12 @@
                                     <td class="text-center"><i class="fa {{ $account->salary ? 'fa-check' : 'fa-times'}}" aria-hidden="true"></i></td>
                                     <td>{{number_format ($account->amount, 2, '.', ' ')}}</td>
                                     <td align="right">
-                                        <a class="btn btn-default" href="{{ url('/financial-resources/edit-account', ['id' => $account->id]) }}">Edit</a>
-                                        <a class="btn btn-default {{$account->amount == 0 ? "" : "disabled"}}" href="{{ url('/financial-resources/delete-account', ['id' => $account->id]) }}">Delete</a>
+                                        <a class="btn btn-default" href="{{ url('/financial-resources/edit-account', ['id' => $account->id]) }}">
+                                            <i class="fa fa-pencil" aria-hidden="true"></i> Edit
+                                        </a>
+                                        <a class="btn btn-default {{$account->amount == 0 ? "" : "disabled"}}" href="{{ url('/financial-resources/delete-account', ['id' => $account->id]) }}">
+                                            <i class="fa fa-trash" aria-hidden="true"></i> Delete
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

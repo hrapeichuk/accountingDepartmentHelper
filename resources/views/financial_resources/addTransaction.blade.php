@@ -5,11 +5,11 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Add transaction</div>
+                    <div class="panel-heading"> Add transaction </div>
 
                     <form class="form-horizontal" method="post" style="margin-top: 30px;">
                         <div class="form-group">
-                            <label for="name" class="col-sm-2 control-label">Account's name</label>
+                            <label for="name" class="col-sm-2 control-label"> Account's name </label>
                             <div class="col-sm-5">
                                 <select class="form-control" name="account">
                                     @foreach($accounts as $key=>$account)
@@ -19,7 +19,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="type" class="col-sm-2 control-label">Type</label>
+                            <label for="type" class="col-sm-2 control-label"> Type </label>
                             <div class="col-sm-5">
                                 <select class="form-control" name="type">
                                     <option value="plus">+</option>
@@ -28,13 +28,13 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="amount" class="col-sm-2 control-label">Amount</label>
+                            <label for="amount" class="col-sm-2 control-label"> Amount </label>
                             <div class="col-sm-5">
                                 <input type="number" class="form-control" id="amount" name="amount" step="0.01" min="0.00">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="comment" class="col-sm-2 control-label">Comment</label>
+                            <label for="comment" class="col-sm-2 control-label"> Comment </label>
                             <div class="col-sm-5">
                                 <textarea class="form-control" rows="3" id="comment" name="comment"></textarea>
                             </div>
@@ -42,7 +42,9 @@
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-5">
                                 <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-                                <button type="submit" class="btn btn-default">Add</button>
+                                <button type="submit" class="btn btn-default">
+                                    <i class="fa fa-check" aria-hidden="true"></i> Add
+                                </button>
                             </div>
                         </div>
                     </form>
