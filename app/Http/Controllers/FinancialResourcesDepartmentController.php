@@ -44,6 +44,20 @@ class FinancialResourcesDepartmentController extends Controller
         return view('financial_resources.addAccount', ['accounts' => Account::all()]);
     }
 
+    public function editAccount(Request $request, $id)
+    {
+        $account = Account::findOrFail($id);
+
+        if ($request->isMethod(Request::METHOD_POST)) {
+            $account->salary = $request->input('salary') ? $request->input('salary') : 0;
+            $account->save();
+
+            return redirect('/financial-resources');
+        }
+
+        return view('financial_resources.editAccount', ['account' => $account, 'accounts' => Account::all()]);
+    }
+
     public function deleteAccount($id)
     {
         $account = Account::findOrFail($id);
@@ -60,6 +74,7 @@ class FinancialResourcesDepartmentController extends Controller
             $transaction->account_id = $request->input('account') ? $request->input('account') : NULL;
             $transaction->type = $request->input('type') ? $request->input('type') : NULL;
             $transaction->amount = $request->input('amount');
+            $transaction->comment = $request->input('comment');
             $transaction->save();
 
             $account = Account::findOrFail($transaction->account_id);

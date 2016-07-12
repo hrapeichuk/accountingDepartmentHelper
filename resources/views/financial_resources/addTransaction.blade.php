@@ -34,6 +34,12 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="comment" class="col-sm-2 control-label">Comment</label>
+                            <div class="col-sm-5">
+                                <textarea class="form-control" rows="3" id="comment" name="comment"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-5">
                                 <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                                 <button type="submit" class="btn btn-default">Add</button>

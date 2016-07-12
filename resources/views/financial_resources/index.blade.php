@@ -16,6 +16,7 @@
                                 <th>Number</th>
                                 <th>Name</th>
                                 <th>Type</th>
+                                <th class="text-center">Salary</th>
                                 <th>Amount</th>
                                 <th></th>
                             </tr>
@@ -24,12 +25,17 @@
                                     <td>{{++$key}}</td>
                                     <td>{{$account->name}}</td>
                                     <td>{{$account->type}}</td>
+                                    <td class="text-center"><i class="fa {{ $account->salary ? 'fa-check' : 'fa-times'}}" aria-hidden="true"></i></td>
                                     <td>{{number_format ($account->amount, 2, '.', ' ')}}</td>
-                                    <td align="right"><a class="btn btn-default {{$account->amount == 0 ? "" : "disabled"}}" href="{{ url('/financial-resources/delete-account', ['id' => $account->id]) }}">Delete</a></td>
+                                    <td align="right">
+                                        <a class="btn btn-default" href="{{ url('/financial-resources/edit-account', ['id' => $account->id]) }}">Edit</a>
+                                        <a class="btn btn-default {{$account->amount == 0 ? "" : "disabled"}}" href="{{ url('/financial-resources/delete-account', ['id' => $account->id]) }}">Delete</a>
+                                    </td>
                                 </tr>
                             @endforeach
                             <tfoot>
                                 <tr class="active">
+                                    <th></th>
                                     <th></th>
                                     <th></th>
                                     <th></th>
@@ -57,6 +63,7 @@
                                 <th>Account</th>
                                 <th>Type</th>
                                 <th>Amount</th>
+                                <th>Comment</th>
                             </tr>
                             @foreach($transactions as $key=>$transaction)
                                 <tr>
@@ -64,6 +71,7 @@
                                     <td>{!! $transaction->account_id == null ? "<i>deleted</i>" : htmlentities($transaction->accountName->name." (".$transaction->accountName->type.")") !!}</td>
                                     <td>{{$transaction->type}}</td>
                                     <td>{{number_format ($transaction->amount, 2, '.', ' ')}}</td>
+                                    <td>{{$transaction->comment}}</td>
                                 </tr>
                             @endforeach
                         </table>

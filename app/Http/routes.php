@@ -37,6 +37,8 @@ Route::get('/financial-resources', 'FinancialResourcesDepartmentController@index
 
 Route::any('/financial-resources/add-account', 'FinancialResourcesDepartmentController@addAccount');
 
+Route::any('/financial-resources/edit-account/{id}', 'FinancialResourcesDepartmentController@editAccount');
+
 Route::get('/financial-resources/delete-account/{id}', 'FinancialResourcesDepartmentController@deleteAccount');
 
 Route::any('/financial-resources/add-transaction', 'FinancialResourcesDepartmentController@addTransaction');

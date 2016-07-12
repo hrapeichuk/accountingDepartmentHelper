@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\ExchangeRate;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
 use DB;
 
 class APIController extends Controller
