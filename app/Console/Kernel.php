@@ -26,5 +26,6 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        $schedule->command('salary:pay')->monthlyOn(1, '09:00');
     }
 }
